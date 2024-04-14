@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Scheduler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="module" src="{{url_for('static', path='/firebase-login.js')}}"></script>
+    <style>
+        #login-box {
+            margin: 0 auto;
+            margin-top: 100px; 
+            width: 300px; 
+            border:2px solid white;
+            border-radius:5px;
+            padding:2%;
+        }
+
+        body {
+            animation: gradientAnimation 10s ease infinite alternate;
+            background-size: 400% 400%;
+            background-image: linear-gradient(135deg, #0e0e0e, #ee7752, #e73c7e, #0e0e0e, #23a6d5, #0e0e0e, #23d5ab, #0e0e0e);
+            height: 100vh;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        label{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-box">
+        <h2 class="text-center" style="text-decoration: underline;color:white;">Login / Signup</h2>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div><br/>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div><br/>
+        <div class="d-flex justify-content-center">
+            <button id="login" class="btn btn-outline-dark btn-rounded me-2">Login</button>
+            <button id="sign-up" class="btn btn-outline-dark btn-rounded">Sign Up</button>
+        </div>
+    </div>
+    {% if user_token %}
+        <div class="container">
+            <div class="text-end mb-4">
+                <button id="sign-out" class="btn btn-dark">Signout</button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <p class="fs-4 text-center" style="color:white;">Welcome, {{ user_token.email }}</p>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                  <div class="card">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+                      alt="Hollywood Sign on The Hill" />
+                    <div class="card-body">
+                      <h5 class="card-title">Add room</h5>
+                      <a href="/add_room" class="btn btn-outline-dark btn-rounded">Add Room</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top"
+                      alt="Palm Springs Road" />
+                    <div class="card-body">
+                      <h5 class="card-title">Rooms List</h5>
+                      <a href="/list_room" class="btn btn-outline-dark btn-rounded">Rooms List</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top"
+                      alt="Los Angeles Skyscrapers" />
+                    <div class="card-body">
+                      <h5 class="card-title">Add Booking</h5>
+                      <a href="/add_booking" class="btn btn-outline-dark btn-rounded">Add Booking</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+                      alt="Skyscrapers" />
+                    <div class="card-body">
+                      <h5 class="card-title">Bookings List</h5>
+                      <a href="/list_booking" class="btn btn-outline-dark btn-rounded">Bookings List</a>
+                    </div>
+                  </div>
+                </div>
+            </div><br/>
+            <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center">
+                <div class="col">
+                    <div class="card">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top" alt="Hollywood Sign on The Hill" />
+                        <div class="card-body">
+                            <h5 class="card-title">Filter Booking</h5>
+                            <a href="/filter_booking" class="btn btn-outline-dark btn-rounded">Filter Booking</a>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    {% endif %}
+</body>
+</html>
